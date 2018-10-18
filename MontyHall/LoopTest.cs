@@ -25,12 +25,15 @@ namespace MontyHall
                 for (int i = 0; i < 1000000; i++)
                 {
                     token.ThrowIfCancellationRequested();
-                    await Task.Delay(10);
-                    var message = i.ToString();
-                    Device.BeginInvokeOnMainThread(() =>
+                    //await Task.Delay(10);
+                    if (i%1000 == 0)
                     {
-                        MessagingCenter.Send<string>(message, "msg");
-                    });
+                        var message = i.ToString();
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            MessagingCenter.Send<string>(message, "msg");
+                        });
+                    }
                 }
             }, token);
         }

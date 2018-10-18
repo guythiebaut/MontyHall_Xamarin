@@ -35,32 +35,9 @@ namespace MontyHall
 
             StartSimButton.Click += (sender, e) =>
             {
-                //Device.BeginInvokeOnMainThread(() =>
-                //{
-                //    MessagingCenter.Send<string>("msg", "This is a test");
-                //});
-
-
                 var intent = new Intent(this, typeof(LongRunningTaskService));
                 StartService(intent);
             };
         }
-
-        //private void StartSimulation()
-        //{
-        //    //MessagingCenter.Send
-
-        //    CancellationToken cts = new CancellationToken();
-
-
-        //    Task.Run(async () =>
-        //     {
-        //         await SimulationWorker(cts);
-        //     });
-
-        //}
-
-
-
     }
 }
