@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<TextView
+		android:text="Number of simulations run: "
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationRoundsRun" />
+	<TextView
+		android:text="Number of games won:"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationsToRunLabel" />
+	<TextView
+		android:text="Number of simulations to run"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationRoundsPlayed" />
+	<EditText
+		android:inputType="number"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationsToRun" />
+	<TextView
+		android:text="Strategy for each game"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationStrategyLabel" />
+	<RadioGroup
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/radioGroup1">
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:checked="true"
+			android:text="Swap"
+			android:id="@+id/radioButton1" />
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Hold"
+			android:id="@+id/radioButton2" />
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Swap/Hold at random"
+			android:id="@+id/radioButton3" />
+	</RadioGroup>
+	<Button
+		android:text="Button"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/radioGroup1"
+		android:id="@+id/startSim" />
+	<Button
+		android:text="Pause simulation"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="right"
+		android:id="@+id/pauseSim" />
+	<Button
+		android:text="Stop simulation"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="right"
+		android:id="@+id/stopSim" />
+</LinearLayout>

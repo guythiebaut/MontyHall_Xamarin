@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<TextView
+		android:text="Please choose a door"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/HostText" />
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		android:orientation="horizontal"
+		android:id="@+id/linearLayout2"
+		android:layout_below="@id/HostText">
+		<Button
+			android:text="Door 1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:id="@+id/doorLeft" />
+		<Button
+			android:text="Door 2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:id="@+id/doorCentre" />
+		<Button
+			android:text="Door 3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right"
+			android:id="@+id/doorRight" />
+	</LinearLayout>
+	<Button
+		android:id="@+id/ResetGame"
+		android:text="Reset game"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_below="@id/linearLayout2" />
+</LinearLayout>
