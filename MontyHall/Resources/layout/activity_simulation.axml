@@ -9,20 +9,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	<TextView
-		android:text="Number of simulations run: "
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:id="@+id/SimulationRoundsRun" />
-	<TextView
-		android:text="Number of games won:"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:id="@+id/SimulationsWon" />
-	<TextView
 		android:text="Number of simulations to run"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -36,6 +22,10 @@
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:id="@+id/SimulationsToRun" />
+	<android.support.v4.widget.Space
+		android:layout_width="match_parent"
+		android:layout_height="20dp"
+		android:id="@+id/space1" />
 	<TextView
 		android:text="Strategy for each game"
 		android:layout_width="fill_parent"
@@ -66,8 +56,30 @@
 			android:text="Swap/Hold at random"
 			android:id="@+id/radioRandom" />
 	</RadioGroup>
+	<android.support.v4.widget.Space
+		android:layout_width="match_parent"
+		android:layout_height="20dp"
+		android:id="@+id/space1" />
+	<TextView
+		android:text="Number of simulations run: "
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationRoundsRun" />
+	<TextView
+		android:text="Number of games won:"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/SimulationsWon" />
+	<android.support.v4.widget.Space
+		android:layout_width="match_parent"
+		android:layout_height="20dp"
+		android:id="@+id/space1" />
 	<Button
-		android:text="Button"
+		android:text="Start simulation"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/radioGroup1"
