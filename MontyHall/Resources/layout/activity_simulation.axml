@@ -54,17 +54,17 @@
 			android:layout_height="wrap_content"
 			android:checked="true"
 			android:text="Swap"
-			android:id="@+id/radioButton1" />
+			android:id="@+id/radioSwap" />
 		<RadioButton
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Hold"
-			android:id="@+id/radioButton2" />
+			android:id="@+id/radioHold" />
 		<RadioButton
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Swap/Hold at random"
-			android:id="@+id/radioButton3" />
+			android:id="@+id/radioRandom" />
 	</RadioGroup>
 	<Button
 		android:text="Button"

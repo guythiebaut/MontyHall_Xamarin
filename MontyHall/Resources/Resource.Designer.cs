@@ -3468,17 +3468,17 @@ namespace MontyHall
 			// aapt resource value: 0x7f090075
 			public const int radio = 2131296373;
 			
-			// aapt resource value: 0x7f090099
-			public const int radioButton1 = 2131296409;
-			
-			// aapt resource value: 0x7f09009a
-			public const int radioButton2 = 2131296410;
-			
-			// aapt resource value: 0x7f09009b
-			public const int radioButton3 = 2131296411;
-			
 			// aapt resource value: 0x7f090098
 			public const int radioGroup1 = 2131296408;
+			
+			// aapt resource value: 0x7f09009a
+			public const int radioHold = 2131296410;
+			
+			// aapt resource value: 0x7f09009b
+			public const int radioRandom = 2131296411;
+			
+			// aapt resource value: 0x7f090099
+			public const int radioSwap = 2131296409;
 			
 			// aapt resource value: 0x7f09004a
 			public const int right = 2131296330;

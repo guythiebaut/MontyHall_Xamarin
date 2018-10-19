@@ -44,9 +44,12 @@ namespace MontyHall
                     }
 
                     RoundSimulation.ClearRounds();
-
-
                     RoundSimulation.AddRound(true);
+
+                    if (random)
+                    {
+                        swap = StaticRandom.Instance.Next(0, 2) == 1;
+                    }
 
                     if (RoundSimulation.WinIfSwap() == swap)
                     {

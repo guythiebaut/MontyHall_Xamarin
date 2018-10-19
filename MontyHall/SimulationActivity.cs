@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
+using System;
 using Xamarin.Forms;
 
 namespace MontyHall
@@ -14,6 +15,9 @@ namespace MontyHall
         TextView SimulationRoundsRun;
         TextView SimulationsWon;
         EditText SimulationsToRun;
+        RadioButton Swap;
+        RadioButton Hold;
+        RadioButton Random;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,11 +35,17 @@ namespace MontyHall
 
             StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
             SimulationsToRun = FindViewById<EditText>(Resource.Id.SimulationsToRun);
+            Swap = FindViewById<RadioButton>(Resource.Id.radioSwap);
+            Hold = FindViewById<RadioButton>(Resource.Id.radioHold);
+            Random = FindViewById<RadioButton>(Resource.Id.radioRandom);
 
             StartSimButton.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(LongRunningTaskService));
                 intent.PutExtra("Rounds", SimulationsToRun.Text);
+                intent.PutExtra("Swap", Swap.Checked);
+                intent.PutExtra("Hold", Hold.Checked);
+                intent.PutExtra("Random", Random.Checked);
                 StartService(intent);
             };
         }

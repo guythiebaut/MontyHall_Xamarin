@@ -38,7 +38,9 @@ namespace MontyHall
                     var simulation = new Simulation();
                     int rounds;
                     int.TryParse(intent.GetStringExtra("Rounds"), out rounds);
-                    simulation.SimulationWorker(_cts.Token, rounds, true, false).Wait();
+                    var swap = intent.GetBooleanExtra("Swap", false);
+                    var random = intent.GetBooleanExtra("Random", false);
+                    simulation.SimulationWorker(_cts.Token, rounds, swap, random).Wait();
                 }
                 catch (System.OperationCanceledException)
                 {
