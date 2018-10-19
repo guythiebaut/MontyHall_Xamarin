@@ -60,7 +60,6 @@
     <Compile Include="GameShowHost.cs" />
     <Compile Include="IRound.cs" />
     <Compile Include="LongRunningTaskService.cs" />
-    <Compile Include="LoopTest.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MessageHelper.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

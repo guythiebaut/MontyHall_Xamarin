@@ -40,7 +40,7 @@ namespace MontyHall
                     //}
                     if (i % displayCount == 0)
                     {
-                        Say("Round number: " + (i + 1).ToString("###,###,###"), "RoundNumber");
+                        Say("Games played: " + (i + 1).ToString("###,###,###"), "RoundNumber");
                     }
 
                     RoundSimulation.ClearRounds();
@@ -56,12 +56,12 @@ namespace MontyHall
                         wins++;
                         if (i % displayCount == 0)
                         {
-                            Say("Rounds won: " + (wins).ToString("###,###,###"), "RoundsWon");
+                            Say("Games won: " + (wins).ToString("###,###,###"), "RoundsWon");
                         }
                     }
                 }
-                Say("Round number: " + (rounds).ToString("###,###,###"), "RoundNumber");
-                Say("Rounds won: " + (wins).ToString("###,###,###"), "RoundsWon");
+                Say("Games played: " + (rounds).ToString("###,###,###"), "RoundNumber");
+                Say("Games won: " + (wins).ToString("###,###,###"), "RoundsWon");
             });
         }
 

@@ -16,7 +16,8 @@ namespace MontyHall
         Button DoorCentre;
         Button DoorRight;
         Button ResetGameButton;
-        TextView HostText;
+        TextView HostText1;
+        TextView HostText2;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,7 +33,8 @@ namespace MontyHall
             DoorCentre = FindViewById<Button>(Resource.Id.doorCentre);
             DoorRight = FindViewById<Button>(Resource.Id.doorRight);
             ResetGameButton = FindViewById<Button>(Resource.Id.ResetGame);
-            HostText = FindViewById<TextView>(Resource.Id.HostText);
+            HostText1 = FindViewById<TextView>(Resource.Id.HostText1);
+            HostText2 = FindViewById<TextView>(Resource.Id.HostText2);
         }
 
         private void SetUpGame()
@@ -65,9 +67,19 @@ namespace MontyHall
             };
         }
 
-        private void Speak(string sayText)
+        private void Speak(string sayText,int lineNumber)
         {
-            HostText.Text = sayText;
+            switch (lineNumber)
+            {
+                case 1:
+                    HostText1.Text = sayText;
+                    break;
+                case 2:
+                    HostText2.Text = sayText;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void ResetDoors()

@@ -7,7 +7,7 @@ namespace MontyHall
     {
         internal delegate void showDoorDelegate(int a, int b);
         showDoorDelegate showDoor;
-        internal delegate void sayDelegate(string a);
+        internal delegate void sayDelegate(string a, int b);
         sayDelegate say;
         internal IRound ThisRound;
         internal int revealedDoor;
@@ -25,11 +25,12 @@ namespace MontyHall
         private Stage CurrentStage = Stage.GameStarted;
 
         public GameShowHost(MontyHall.Interfaces.IRound round, showDoorDelegate showDoorDel, sayDelegate sayDel)
-       {
+        {
             ThisRound = round;
             showDoor = showDoorDel;
             say = sayDel;
-            say("Pick a door below!");
+            say("Pick a door below!", 1);
+            say(string.Empty, 2);
         }
 
         public void ResetGame()
@@ -46,7 +47,8 @@ namespace MontyHall
                 revealedDoor = ThisRound.GetGoatDoor(doorNumber);
                 doorsRevealed.Add(revealedDoor + 1);
                 showDoor(revealedDoor, 0);
-                say("Hold or swap? Pick a door again.");
+                say("Hold or swap?", 1);
+                say("Pick a door again.", 2);
                 return;
             }
 
@@ -66,12 +68,14 @@ namespace MontyHall
 
                 if (prizeDoor == doorNumber)
                 {
-                    say("You win!");
+                    say("You win!", 1);
+                    say(string.Empty, 2);
                     showDoor(toReveal, 0);
                 }
                 else
                 {
-                    say("You lose!");
+                    say("You lose!", 1);
+                    say(string.Empty, 2);
                     showDoor(toReveal, 1);
                 }
 

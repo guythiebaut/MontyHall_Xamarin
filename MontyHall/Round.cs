@@ -71,7 +71,6 @@ namespace MontyHall
             if (autoChooseDoor)
             {
                 doors.ChosenDoor = GetRandomDoor();
-                //System.Diagnostics.Debug.Print(doors.ChosenDoor.ToString());
             }
             return doors;
         }

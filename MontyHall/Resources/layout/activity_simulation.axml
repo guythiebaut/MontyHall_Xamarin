@@ -7,32 +7,53 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true"	>
+	<Button
+		android:text="Start simulation"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/startSim" />
+	<android.support.v4.widget.Space
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:id="@+id/space1" />
 	<TextView
 		android:text="Number of simulations to run"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
+		android:textSize="18dp"
+		android:textColor="#000000"
 		android:id="@+id/SimulationsToRunLabel" />
 	<EditText
 		android:inputType="number"
+		android:text="1000000"			
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
+		android:textSize="18dp"			
 		android:id="@+id/SimulationsToRun" />
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
-		android:layout_height="20dp"
-		android:id="@+id/space1" />
+		android:layout_height="10dp"
+		android:id="@+id/space2" />
 	<TextView
 		android:text="Strategy for each game"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
+		android:textSize="18dp"		
+		android:textColor="#000000"			
 		android:id="@+id/SimulationStrategyLabel" />
+	<android.support.v4.widget.Space
+		android:layout_width="match_parent"
+		android:layout_height="10dp"
+		android:id="@+id/space3" />
 	<RadioGroup
 		android:minWidth="25px"
 		android:minHeight="25px"
@@ -44,57 +65,46 @@
 			android:layout_height="wrap_content"
 			android:checked="true"
 			android:text="Swap"
+			android:textSize="12dp"
 			android:id="@+id/radioSwap" />
 		<RadioButton
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Hold"
+			android:textSize="12dp"				
 			android:id="@+id/radioHold" />
 		<RadioButton
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Swap/Hold at random"
+			android:textSize="12dp"
 			android:id="@+id/radioRandom" />
 	</RadioGroup>
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
-		android:layout_height="20dp"
-		android:id="@+id/space1" />
+		android:layout_height="10dp"
+		android:id="@+id/space3" />
 	<TextView
-		android:text="Number of simulations run: "
+		android:text="Games played: 0"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
+		android:textSize="18dp"		
+		android:textColor="#000099"			
 		android:id="@+id/SimulationRoundsRun" />
 	<TextView
-		android:text="Number of games won:"
+		android:text="Gamess won: 0"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
+		android:textSize="18dp"		
+		android:textColor="#000099"			
 		android:id="@+id/SimulationsWon" />
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
 		android:layout_height="20dp"
-		android:id="@+id/space1" />
-	<Button
-		android:text="Start simulation"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/radioGroup1"
-		android:id="@+id/startSim" />
-	<Button
-		android:text="Pause simulation"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="right"
-		android:id="@+id/pauseSim" />
-	<Button
-		android:text="Stop simulation"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="right"
-		android:id="@+id/stopSim" />
+		android:id="@+id/space4" />
 </LinearLayout>
 </ScrollView>
