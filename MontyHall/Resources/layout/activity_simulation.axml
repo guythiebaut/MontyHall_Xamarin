@@ -84,27 +84,34 @@
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
 		android:id="@+id/space3" />
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_marginLeft="20dp"		
+		android:layout_marginRight="20dp"				
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/back" >
 	<TextView
 		android:text="Games played: 0"
+		android:layout_marginLeft="5dp"						
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:textSize="18dp"		
-		android:textColor="#000099"			
+		android:textSize="17dp"		
+		android:textColor="#00ff00"			
 		android:id="@+id/SimulationRoundsRun" />
 	<TextView
-		android:text="Gamess won: 0"
+		android:text="Games won: 0"
+		android:layout_marginLeft="5dp"		
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:textSize="18dp"		
-		android:textColor="#000099"			
+		android:textSize="17dp"		
+		android:textColor="#00ff00"			
 		android:id="@+id/SimulationsWon" />
-	<android.support.v4.widget.Space
-		android:layout_width="match_parent"
-		android:layout_height="20dp"
-		android:id="@+id/space4" />
+	</LinearLayout>
 </LinearLayout>
 </ScrollView>
