@@ -21,14 +21,14 @@
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:id="@+id/SimulationsToRunLabel" />
+		android:id="@+id/SimulationsWon" />
 	<TextView
 		android:text="Number of simulations to run"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:id="@+id/SimulationRoundsPlayed" />
+		android:id="@+id/SimulationsToRunLabel" />
 	<EditText
 		android:inputType="number"
 		android:layout_width="match_parent"

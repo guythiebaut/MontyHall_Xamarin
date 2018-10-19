@@ -19,6 +19,7 @@ namespace MontyHall
     public class LongRunningTaskService : Service
     {
         CancellationTokenSource _cts;
+        public delegate void sayDelegate(string a, string b);
 
         public override IBinder OnBind(Intent intent)
         {
@@ -29,12 +30,15 @@ namespace MontyHall
         {
             _cts = new CancellationTokenSource();
 
-            Task.Run(() => {
+            Task.Run(() =>
+            {
                 try
                 {
                     //INVOKE THE SHARED CODE
-                    var test = new LoopTest();
-                    test.SimulationWorker(_cts.Token).Wait();
+                    var simulation = new Simulation();
+                    int rounds;
+                    int.TryParse(intent.GetStringExtra("Rounds"), out rounds);
+                    simulation.SimulationWorker(_cts.Token, rounds, true, false).Wait();
                 }
                 catch (System.OperationCanceledException)
                 {
@@ -43,10 +47,7 @@ namespace MontyHall
                 {
                     if (_cts.IsCancellationRequested)
                     {
-                        var message = "cancelled";
-                        Device.BeginInvokeOnMainThread(
-                            () => MessagingCenter.Send(message, "CancelledMessage")
-                        );
+                        MessageHelper.Send("CancelledMessage", "cancelled");
                     }
                 }
 

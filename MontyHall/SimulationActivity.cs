@@ -12,6 +12,8 @@ namespace MontyHall
     {
         Android.Widget.Button StartSimButton;
         TextView SimulationRoundsRun;
+        TextView SimulationsWon;
+        EditText SimulationsToRun;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,20 +24,18 @@ namespace MontyHall
 
         private void WireUpControls()
         {
-            StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
             SimulationRoundsRun = FindViewById<TextView>(Resource.Id.SimulationRoundsRun);
+            SimulationsWon = FindViewById<TextView>(Resource.Id.SimulationsWon);
+            MessageHelper.Subscribe(this, "RoundNumber", SimulationRoundsRun);
+            MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
 
-            MessagingCenter.Subscribe<string>(this, "msg", (message) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    SimulationRoundsRun.Text = message;
-                });
-            });
+            StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
+            SimulationsToRun = FindViewById<EditText>(Resource.Id.SimulationsToRun);
 
             StartSimButton.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(LongRunningTaskService));
+                intent.PutExtra("Rounds", SimulationsToRun.Text);
                 StartService(intent);
             };
         }

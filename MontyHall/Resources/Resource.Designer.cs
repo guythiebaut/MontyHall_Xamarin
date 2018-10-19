@@ -3060,9 +3060,6 @@ namespace MontyHall
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
 			
-			// aapt resource value: 0x7f090095
-			public const int SimulationRoundsPlayed = 2131296405;
-			
 			// aapt resource value: 0x7f090093
 			public const int SimulationRoundsRun = 2131296403;
 			
@@ -3072,8 +3069,11 @@ namespace MontyHall
 			// aapt resource value: 0x7f090096
 			public const int SimulationsToRun = 2131296406;
 			
+			// aapt resource value: 0x7f090095
+			public const int SimulationsToRunLabel = 2131296405;
+			
 			// aapt resource value: 0x7f090094
-			public const int SimulationsToRunLabel = 2131296404;
+			public const int SimulationsWon = 2131296404;
 			
 			// aapt resource value: 0x7f0900ca
 			public const int action0 = 2131296458;
