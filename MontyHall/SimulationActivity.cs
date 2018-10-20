@@ -28,13 +28,13 @@ namespace MontyHall
 
         private void WireUpControls()
         {
-            SimulationRoundsRun = FindViewById<TextView>(Resource.Id.SimulationRoundsRun);
-            SimulationsWon = FindViewById<TextView>(Resource.Id.SimulationsWon);
+            SimulationRoundsRun = FindViewById<TextView>(Resource.Id.SimRoundsRun);
+            SimulationsWon = FindViewById<TextView>(Resource.Id.SimsWon);
             MessageHelper.Subscribe(this, "RoundNumber", SimulationRoundsRun);
             MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
 
             StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
-            SimulationsToRun = FindViewById<EditText>(Resource.Id.SimulationsToRun);
+            SimulationsToRun = FindViewById<EditText>(Resource.Id.SimsToRun);
             Swap = FindViewById<RadioButton>(Resource.Id.radioSwap);
             Hold = FindViewById<RadioButton>(Resource.Id.radioHold);
             Random = FindViewById<RadioButton>(Resource.Id.radioRandom);

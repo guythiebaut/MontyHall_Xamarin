@@ -11,23 +11,23 @@
 	android:descendantFocusability="beforeDescendants"
 	android:focusableInTouchMode="true"	>
 	<Button
-		android:text="Start simulation"
+		android:text="Run simulation"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/startSim" />
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
-		android:id="@+id/space1" />
+		android:id="@+id/simSpace1" />
 	<TextView
-		android:text="Number of simulations to run"
+		android:text="Number of games to play"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:textSize="18dp"
 		android:textColor="#000000"
-		android:id="@+id/SimulationsToRunLabel" />
+		android:id="@+id/SimsToRunLabel" />
 	<EditText
 		android:inputType="number"
 		android:text="1000000"			
@@ -36,11 +36,11 @@
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:textSize="18dp"			
-		android:id="@+id/SimulationsToRun" />
+		android:id="@+id/SimsToRun" />
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
-		android:id="@+id/space2" />
+		android:id="@+id/simSpace2" />
 	<TextView
 		android:text="Strategy for each game"
 		android:layout_width="fill_parent"
@@ -49,11 +49,11 @@
 		android:minHeight="25px"
 		android:textSize="18dp"		
 		android:textColor="#000000"			
-		android:id="@+id/SimulationStrategyLabel" />
+		android:id="@+id/SimStrategyLabel" />
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
-		android:id="@+id/space3" />
+		android:id="@+id/simSpace3" />
 	<RadioGroup
 		android:minWidth="25px"
 		android:minHeight="25px"
@@ -83,7 +83,7 @@
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
 		android:layout_height="10dp"
-		android:id="@+id/space3" />
+		android:id="@+id/simSpace4" />
 	<LinearLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_marginLeft="20dp"		
@@ -92,26 +92,26 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@drawable/back" >
-	<TextView
-		android:text="Games played: 0"
-		android:layout_marginLeft="5dp"						
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:textSize="17dp"		
-		android:textColor="#00ff00"			
-		android:id="@+id/SimulationRoundsRun" />
-	<TextView
-		android:text="Games won: 0"
-		android:layout_marginLeft="5dp"		
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:textSize="17dp"		
-		android:textColor="#00ff00"			
-		android:id="@+id/SimulationsWon" />
+		<TextView
+			android:text="Games played: 0"
+			android:layout_marginLeft="5dp"						
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textSize="17dp"		
+			android:textColor="#00ff00"			
+			android:id="@+id/SimRoundsRun" />
+		<TextView
+			android:text="Games won: 0"
+			android:layout_marginLeft="5dp"		
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:textSize="17dp"		
+			android:textColor="#00ff00"			
+			android:id="@+id/SimsWon" />
 	</LinearLayout>
 </LinearLayout>
 </ScrollView>

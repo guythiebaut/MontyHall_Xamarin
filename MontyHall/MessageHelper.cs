@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
+using System;
 using Xamarin.Forms;
 
 namespace MontyHall
@@ -26,6 +27,17 @@ namespace MontyHall
                     {
                         ((TextView)subscribingObject).Text = message;
                     }
+                });
+            });
+        }
+
+        public static void Subscribe(object subscriber, string sender, Action<string, string> subscribingAction)
+        {
+            MessagingCenter.Subscribe<string>(subscriber, sender, (message) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    subscribingAction.Invoke(sender, message);
                 });
             });
         }

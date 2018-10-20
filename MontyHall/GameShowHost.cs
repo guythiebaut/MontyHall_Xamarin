@@ -5,10 +5,6 @@ namespace MontyHall
 {
     class GameShowHost
     {
-        internal delegate void showDoorDelegate(int a, int b);
-        showDoorDelegate showDoor;
-        internal delegate void sayDelegate(string a, int b);
-        sayDelegate say;
         internal IRound ThisRound;
         internal int revealedDoor;
         internal List<int> doorsRevealed = new List<int>();
@@ -24,13 +20,11 @@ namespace MontyHall
 
         private Stage CurrentStage = Stage.GameStarted;
 
-        public GameShowHost(MontyHall.Interfaces.IRound round, showDoorDelegate showDoorDel, sayDelegate sayDel)
+        public GameShowHost(MontyHall.Interfaces.IRound round)
         {
             ThisRound = round;
-            showDoor = showDoorDel;
-            say = sayDel;
-            say("Pick a door below!", 1);
-            say(string.Empty, 2);
+            MessageHelper.Send("HostSaysLine1", "Pick a door below!");
+            MessageHelper.Send("HostSaysLine2", string.Empty);
         }
 
         public void ResetGame()
@@ -46,9 +40,9 @@ namespace MontyHall
                 CurrentStage = Stage.FirstDoorChosen;
                 revealedDoor = ThisRound.GetGoatDoor(doorNumber);
                 doorsRevealed.Add(revealedDoor + 1);
-                showDoor(revealedDoor, 0);
-                say("Hold or swap?", 1);
-                say("Pick a door again.", 2);
+                MessageHelper.Send("ShowGoatDoor", revealedDoor.ToString());
+                MessageHelper.Send("HostSaysLine1", "Hold or swap ?");
+                MessageHelper.Send("HostSaysLine2", "Pick a door again.");
                 return;
             }
 
@@ -65,21 +59,23 @@ namespace MontyHall
                 }
 
                 int toReveal = 6 - revealed - 1;
+                MessageHelper.Send("GamePlayed", string.Empty);
 
                 if (prizeDoor == doorNumber)
                 {
-                    say("You win!", 1);
-                    say(string.Empty, 2);
-                    showDoor(toReveal, 0);
+                    MessageHelper.Send("GameWon", string.Empty);
+                    MessageHelper.Send("HostSaysLine1", "You win!");
+                    MessageHelper.Send("HostSaysLine2", string.Empty);
+                    MessageHelper.Send("ShowGoatDoor", toReveal.ToString());
                 }
                 else
                 {
-                    say("You lose!", 1);
-                    say(string.Empty, 2);
-                    showDoor(toReveal, 1);
+                    MessageHelper.Send("HostSaysLine1", "You lose!");
+                    MessageHelper.Send("HostSaysLine2", string.Empty);
+                    MessageHelper.Send("ShowGoatDoor", toReveal.ToString());
                 }
 
-                showDoor(prizeDoor, 2);
+                MessageHelper.Send("ShowPrizeDoor", prizeDoor.ToString());
                 CurrentStage = Stage.PrizeDoorRevealed;
             }
 
