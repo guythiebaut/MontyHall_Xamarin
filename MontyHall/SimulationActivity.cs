@@ -30,14 +30,14 @@ namespace MontyHall
         {
             SimulationRoundsRun = FindViewById<TextView>(Resource.Id.SimRoundsRun);
             SimulationsWon = FindViewById<TextView>(Resource.Id.SimsWon);
-            MessageHelper.Subscribe(this, "RoundNumber", SimulationRoundsRun);
-            MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
-
             StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
             SimulationsToRun = FindViewById<EditText>(Resource.Id.SimsToRun);
             Swap = FindViewById<RadioButton>(Resource.Id.radioSwap);
             Hold = FindViewById<RadioButton>(Resource.Id.radioHold);
             Random = FindViewById<RadioButton>(Resource.Id.radioRandom);
+
+            MessageHelper.Subscribe(this, "RoundNumber", SimulationRoundsRun);
+            MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
 
             StartSimButton.Click += (sender, e) =>
             {
