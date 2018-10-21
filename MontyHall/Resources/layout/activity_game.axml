@@ -39,29 +39,28 @@
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true"
 		android:orientation="horizontal"
+		android:gravity="center"
 		android:id="@+id/gameLayout2" >
-		<Button
-			android:text="Door 1"
-			android:textSize="12dp"			
-			android:layout_marginLeft="10dp"					
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="right"
-			android:id="@+id/doorLeft" />
-		<Button
-			android:text="Door 2"
-			android:textSize="12dp"			
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="right"
-			android:id="@+id/doorCentre" />
-		<Button
-			android:text="Door 3"
-			android:textSize="12dp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="right"
-			android:id="@+id/doorRight" />
+		<ImageButton
+		android:src="@drawable/door_transparent"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="30dp"
+		android:layout_gravity="right"			
+		android:id="@+id/doorLeft" />
+		<ImageButton
+		android:src="@drawable/door_transparent"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="30dp"
+		android:layout_gravity="right"			
+		android:id="@+id/doorCentre" />
+		<ImageButton
+		android:src="@drawable/door_transparent"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="right"			
+		android:id="@+id/doorRight" />
 	</LinearLayout>
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"
@@ -113,7 +112,7 @@
 			android:minHeight="25px"
 			android:textSize="18dp"
 			android:textColor="#000000"	
-			android:id="@+id/ResultText3" />
+			android:id="@+id/SwappedText" />
 	</LinearLayout>
 	<android.support.v4.widget.Space
 		android:layout_width="match_parent"

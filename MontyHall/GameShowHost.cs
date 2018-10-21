@@ -19,6 +19,7 @@ namespace MontyHall
         }
 
         private Stage CurrentStage = Stage.GameStarted;
+        private int FirstDoorChosen;
 
         public GameShowHost(MontyHall.Interfaces.IRound round)
         {
@@ -36,6 +37,7 @@ namespace MontyHall
         {
             if (CurrentStage == Stage.GameStarted)
             {
+                FirstDoorChosen = doorNumber;
                 doorsRevealed.Clear();
                 CurrentStage = Stage.FirstDoorChosen;
                 revealedDoor = ThisRound.GetGoatDoor(doorNumber);
@@ -48,6 +50,10 @@ namespace MontyHall
 
             if (CurrentStage == Stage.FirstDoorChosen && doorNumber != revealedDoor)
             {
+                if (doorNumber!=FirstDoorChosen)
+                {
+                    MessageHelper.Send("Swapped", string.Empty);
+                }
                 CurrentStage = Stage.SecondDoorChosen;
                 int prizeDoor = ThisRound.GetPrizeDoor();
                 doorsRevealed.Add(prizeDoor + 1);

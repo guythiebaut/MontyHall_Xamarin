@@ -9,15 +9,16 @@ namespace MontyHall
     [Activity]
     public class GameActivity : AppCompatActivity
     {
-        Button DoorLeft;
-        Button DoorCentre;
-        Button DoorRight;
+        ImageButton DoorLeft;
+        ImageButton DoorCentre;
+        ImageButton DoorRight;
         Button ResetGameButton;
         Button ResetStatsButton;
         TextView HostText1;
         TextView HostText2;
         TextView PlayedText;
         TextView WonText;
+        TextView SwappedText;
         int GamesPlayed;
         int GamesWon;
         int Swapped;
@@ -32,17 +33,19 @@ namespace MontyHall
 
         private void WireUpControls()
         {
-            DoorLeft = FindViewById<Button>(Resource.Id.doorLeft);
-            DoorCentre = FindViewById<Button>(Resource.Id.doorCentre);
-            DoorRight = FindViewById<Button>(Resource.Id.doorRight);
+            DoorLeft = FindViewById<ImageButton>(Resource.Id.doorLeft);
+            DoorCentre = FindViewById<ImageButton>(Resource.Id.doorCentre);
+            DoorRight = FindViewById<ImageButton>(Resource.Id.doorRight);
             ResetGameButton = FindViewById<Button>(Resource.Id.ResetGame);
             ResetStatsButton = FindViewById<Button>(Resource.Id.StatsReset);
             HostText1 = FindViewById<TextView>(Resource.Id.HostText1);
             HostText2 = FindViewById<TextView>(Resource.Id.HostText2);
             PlayedText = FindViewById<TextView>(Resource.Id.PlayedText);
             WonText = FindViewById<TextView>(Resource.Id.WonText);
+            SwappedText = FindViewById<TextView>(Resource.Id.SwappedText);
 
             MessageHelper.Subscribe(this, "GameWon", ActionDelegate);
+            MessageHelper.Subscribe(this, "Swapped", ActionDelegate);
             MessageHelper.Subscribe(this, "GamePlayed", ActionDelegate);
             MessageHelper.Subscribe(this, "HostSaysLine1", ActionDelegate);
             MessageHelper.Subscribe(this, "HostSaysLine2", ActionDelegate);
@@ -53,6 +56,7 @@ namespace MontyHall
         private void ActionDelegate(string sender, string message)
         {
             if (sender == "GameWon") Won();
+            if (sender == "Swapped") Swap();
             if (sender == "GamePlayed") Played();
             if (sender == "HostSaysLine1") HostText1.Text = message;
             if (sender == "HostSaysLine2") HostText2.Text = message;
@@ -64,18 +68,18 @@ namespace MontyHall
         {
             int doorToShow;
             int.TryParse(door, out doorToShow);
-            string doorText = prize ? "Prize" : "Goat";
+            int doorImage = prize ? Resource.Drawable.gold : Resource.Drawable.goat;
 
             switch (doorToShow)
             {
                 case 0:
-                    DoorLeft.Text = doorText;
+                    DoorLeft.SetImageResource(doorImage);
                     break;
                 case 1:
-                    DoorCentre.Text = doorText;
+                    DoorCentre.SetImageResource(doorImage);
                     break;
                 case 2:
-                    DoorRight.Text = doorText;
+                    DoorRight.SetImageResource(doorImage);
                     break;
                 default:
                     break;
@@ -135,6 +139,7 @@ namespace MontyHall
         private void Swap()
         {
             Swapped++;
+            SwappedText.Text = string.Format("Times swapped: {0}", Swapped);
         }
 
         private void Played()
@@ -156,13 +161,14 @@ namespace MontyHall
             GamesPlayed = 0;
             PlayedText.Text = string.Format("Games played: {0}", GamesPlayed);
             WonText.Text = string.Format("Games Won: {0}", GamesWon);
+            SwappedText.Text = string.Format("Times swapped: {0}", Swapped);
         }
 
         private void ResetDoors()
         {
-            DoorLeft.Text = "Door 1";
-            DoorCentre.Text = "Door 2";
-            DoorRight.Text = "Door 3";
+            DoorLeft.SetImageResource(Resource.Drawable.door_transparent);
+            DoorCentre.SetImageResource(Resource.Drawable.door_transparent);
+            DoorRight.SetImageResource(Resource.Drawable.door_transparent);
         }
     }
 }
