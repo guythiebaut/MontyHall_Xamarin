@@ -35,6 +35,9 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -58,6 +61,7 @@
   <ItemGroup>
     <Compile Include="GameActivity.cs" />
     <Compile Include="GameShowHost.cs" />
+    <Compile Include="InstructionsActivity.cs" />
     <Compile Include="IRound.cs" />
     <Compile Include="LongRunningTaskService.cs" />
     <Compile Include="MainActivity.cs" />
@@ -145,6 +149,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\gold.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_instructions.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\files\instructions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

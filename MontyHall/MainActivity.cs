@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Widget;
 using System.Collections.Generic;
 using Android.Content;
+using System.Text;
 
 namespace MontyHall
 {
@@ -30,6 +31,13 @@ namespace MontyHall
             simulationButton.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(SimulationActivity));
+                StartActivity(intent);
+            };
+
+            Button instructions = FindViewById<Button>(Resource.Id.ReadInstructions);
+            instructions.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(InstructionsActivity));
                 StartActivity(intent);
             };
         }

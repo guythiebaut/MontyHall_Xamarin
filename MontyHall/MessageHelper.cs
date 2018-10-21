@@ -19,10 +19,7 @@ namespace MontyHall
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    if (subscribingObject is TextView)
-                    {
-                        ((TextView)subscribingObject).Text = message;
-                    }
+                    if (subscribingObject is TextView) { ((TextView)subscribingObject).Text = message; }
                 });
             });
         }
@@ -31,10 +28,7 @@ namespace MontyHall
         {
             MessagingCenter.Subscribe<string>(subscriber, sender, (message) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    subscribingAction.Invoke(sender, message);
-                });
+                Device.BeginInvokeOnMainThread(() => { subscribingAction.Invoke(sender, message); });
             });
         }
     }

@@ -1,0 +1,16 @@
+Instructions
+
+The game show host presents the participant with three closed doors and tells the participant that behind one of the doors is a prize, behind the other two doors are goats.
+
+The game show host then asks the participant to choose a door.
+Once the participant has chosen a door the gameshow host then opens one of the other doors behind which is a goat.
+The game show host then asks the participant if they want to hold with the door they have chosen or to swap and open the other closed door.
+
+This app contains two main sections:
+Play game - where you can play the Monty Hall game one game at a time.
+Run game simulation - where you can play a number of games using a particular strategy(hold/swap/random), in order to discover how many games you can with with the strategy selected.
+
+What do you think is the best strategy for winning the prize?
+Should you hold, swap or is your chance of winning equal whichever choice you make?
+
+The simulation will help you gather evidence for which is the best strategy.

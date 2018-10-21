@@ -44,16 +44,16 @@ namespace MontyHall
             WonText = FindViewById<TextView>(Resource.Id.WonText);
             SwappedText = FindViewById<TextView>(Resource.Id.SwappedText);
 
-            MessageHelper.Subscribe(this, "GameWon", ActionDelegate);
-            MessageHelper.Subscribe(this, "Swapped", ActionDelegate);
-            MessageHelper.Subscribe(this, "GamePlayed", ActionDelegate);
-            MessageHelper.Subscribe(this, "HostSaysLine1", ActionDelegate);
-            MessageHelper.Subscribe(this, "HostSaysLine2", ActionDelegate);
-            MessageHelper.Subscribe(this, "ShowPrizeDoor", ActionDelegate);
-            MessageHelper.Subscribe(this, "ShowGoatDoor", ActionDelegate);
+            MessageHelper.Subscribe(this, "GameWon", MessageAction);
+            MessageHelper.Subscribe(this, "Swapped", MessageAction);
+            MessageHelper.Subscribe(this, "GamePlayed", MessageAction);
+            MessageHelper.Subscribe(this, "HostSaysLine1", MessageAction);
+            MessageHelper.Subscribe(this, "HostSaysLine2", MessageAction);
+            MessageHelper.Subscribe(this, "ShowPrizeDoor", MessageAction);
+            MessageHelper.Subscribe(this, "ShowGoatDoor", MessageAction);
         }
 
-        private void ActionDelegate(string sender, string message)
+        private void MessageAction(string sender, string message)
         {
             if (sender == "GameWon") Won();
             if (sender == "Swapped") Swap();

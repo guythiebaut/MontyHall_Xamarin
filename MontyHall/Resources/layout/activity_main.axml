@@ -20,4 +20,10 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/PlayGame"
 		android:id="@+id/RunSimulation" />
+	<Button
+		android:text="Instructions"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/RunSimulation"
+		android:id="@+id/ReadInstructions" />
  </LinearLayout>
