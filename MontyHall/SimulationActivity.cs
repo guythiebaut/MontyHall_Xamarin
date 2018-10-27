@@ -11,22 +11,25 @@ namespace MontyHall
     [Activity]
     public class SimulationActivity : AppCompatActivity
     {
+        Persist persist = new Persist();
         Android.Widget.Button StartSimButton;
         TextView SimulationRoundsRun;
         TextView SimulationsWon;
         EditText SimulationsToRun;
+        RadioGroup radioGroupStrategy;
         RadioButton Swap;
         RadioButton Hold;
         RadioButton Random;
         bool SimulationRunning = false;
         int maxSims = 10000000;
-        string lastVal;
+        int lastSimulationRuns;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_simulation);
             WireUpControls();
+            ApplySavedSettings();
         }
 
         private void WireUpControls()
@@ -35,6 +38,7 @@ namespace MontyHall
             SimulationsWon = FindViewById<TextView>(Resource.Id.SimsWon);
             StartSimButton = FindViewById<Android.Widget.Button>(Resource.Id.startSim);
             SimulationsToRun = FindViewById<EditText>(Resource.Id.SimsToRun);
+            radioGroupStrategy = FindViewById<RadioGroup>(Resource.Id.radioGroupStrategy);
             Swap = FindViewById<RadioButton>(Resource.Id.radioSwap);
             Hold = FindViewById<RadioButton>(Resource.Id.radioHold);
             Random = FindViewById<RadioButton>(Resource.Id.radioRandom);
@@ -50,7 +54,7 @@ namespace MontyHall
 
                  if (value > maxSims)
                  {
-                     value = maxSims;
+                     value = lastSimulationRuns;
                      SimulationsToRun.Text = value.ToString();
                  }
 
@@ -60,8 +64,17 @@ namespace MontyHall
                      SimulationsToRun.Text = value.ToString();
                  }
 
-                 lastVal = SimulationsToRun.Text;
+                 lastSimulationRuns = value;
+                 persist.AddPreference("SimulationRuns", lastSimulationRuns.ToString());
              };
+
+            radioGroupStrategy.CheckedChange += (sender, e) =>
+            {
+                persist.AddPreference("Strategy", string.Empty);
+                persist.AddPreference("Strategy_Swap", Swap.Checked.ToString());
+                persist.AddPreference("Strategy_Hold", Hold.Checked.ToString());
+                persist.AddPreference("Strategy_Random", Random.Checked.ToString());
+            };
 
             StartSimButton.Click += (sender, e) =>
             {
@@ -74,6 +87,22 @@ namespace MontyHall
                 intent.PutExtra("Random", Random.Checked);
                 StartService(intent);
             };
+        }
+
+        private void ApplySavedSettings()
+        {
+            if (persist.Contains("SimulationRuns"))
+            {
+                int.TryParse((string)persist.GetPreference("SimulationRuns"), out lastSimulationRuns);
+                SimulationsToRun.Text = lastSimulationRuns.ToString();
+            }
+
+            if (persist.Contains("Strategy"))
+            {
+                Swap.Checked = Convert.ToBoolean(persist.GetPreference("Strategy_Swap"));
+                Hold.Checked = Convert.ToBoolean(persist.GetPreference("Strategy_Hold"));
+                Random.Checked = Convert.ToBoolean(persist.GetPreference("Strategy_Random"));
+            }
         }
 
         private void SimulationUpdate(string sender, string message)

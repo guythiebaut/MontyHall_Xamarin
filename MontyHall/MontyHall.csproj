@@ -68,6 +68,7 @@
     <Compile Include="LongRunningTaskService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MessageHelper.cs" />
+    <Compile Include="Persist.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Round.cs" />

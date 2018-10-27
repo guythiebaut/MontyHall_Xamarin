@@ -3520,7 +3520,7 @@ namespace MontyHall
 			public const int radio = 2131296373;
 			
 			// aapt resource value: 0x7f0900aa
-			public const int radioGroup1 = 2131296426;
+			public const int radioGroupStrategy = 2131296426;
 			
 			// aapt resource value: 0x7f0900ac
 			public const int radioHold = 2131296428;
