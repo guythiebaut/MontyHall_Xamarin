@@ -18,6 +18,9 @@ namespace MontyHall
         RadioButton Swap;
         RadioButton Hold;
         RadioButton Random;
+        bool SimulationRunning = false;
+        int maxSims = 10000000;
+        string lastVal;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,9 +41,32 @@ namespace MontyHall
 
             MessageHelper.Subscribe(this, "RoundNumber", SimulationRoundsRun);
             MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
+            MessageHelper.Subscribe(this, "Simulation", SimulationUpdate);
+
+            SimulationsToRun.AfterTextChanged += (sender, e) =>
+             {
+                 int value;
+                 int.TryParse(SimulationsToRun.Text, out value);
+
+                 if (value > maxSims)
+                 {
+                     value = maxSims;
+                     SimulationsToRun.Text = value.ToString();
+                 }
+
+                 if (value <= 0)
+                 {
+                     value = 1;
+                     SimulationsToRun.Text = value.ToString();
+                 }
+
+                 lastVal = SimulationsToRun.Text;
+             };
 
             StartSimButton.Click += (sender, e) =>
             {
+                if (SimulationRunning) return;
+                DependencyService.Get<IForceKeyboardDismissalService>().DismissKeyboard();
                 var intent = new Intent(this, typeof(LongRunningTaskService));
                 intent.PutExtra("Rounds", SimulationsToRun.Text);
                 intent.PutExtra("Swap", Swap.Checked);
@@ -48,6 +74,21 @@ namespace MontyHall
                 intent.PutExtra("Random", Random.Checked);
                 StartService(intent);
             };
+        }
+
+        private void SimulationUpdate(string sender, string message)
+        {
+            switch (message)
+            {
+                case "started":
+                    SimulationRunning = true;
+                    break;
+                case "completed":
+                    SimulationRunning = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

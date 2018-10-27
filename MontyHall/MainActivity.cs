@@ -6,6 +6,7 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.Content;
 using System.Text;
+using Plugin.CurrentActivity;
 
 namespace MontyHall
 {
@@ -19,6 +20,7 @@ namespace MontyHall
             SetContentView(Resource.Layout.activity_main);
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             Button playGameButton = FindViewById<Button>(Resource.Id.PlayGame);
             playGameButton.Click += (sender, e) =>

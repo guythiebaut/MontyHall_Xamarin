@@ -16,9 +16,10 @@ namespace MontyHall
 
             await Task.Run(async () =>
             {
+                MessageHelper.Send("Simulation", "started");
                 IRound RoundSimulation = new Round(3);
                 int displayCount;
-                int wins = 0;
+                var wins = 0;
 
                 if (rounds >= 100000)
                 {
@@ -28,7 +29,7 @@ namespace MontyHall
                 {
                     displayCount = rounds / 3;
                 }
-
+                
                 for (int i = 0; i < rounds; i++)
                 {
                     //if (bw.CancellationPending)
@@ -60,8 +61,9 @@ namespace MontyHall
                         }
                     }
                 }
-                Say("Games played: " + (rounds).ToString("###,###,###"), "RoundNumber");
-                Say("Games won: " + (wins).ToString("###,###,###"), "RoundsWon");
+                Say("Games played: " + string.Format("{0:n0}", rounds), "RoundNumber");
+                Say("Games won: " + string.Format("{0:n0}", wins), "RoundsWon");
+                MessageHelper.Send("Simulation", "completed");
             });
         }
 

@@ -50,7 +50,7 @@ namespace MontyHall
 
             internal List<int> GoatDoors()
             {
-                List<int> goats = new List<int>() { 0, 1, 2 };
+                var goats = new List<int>() { 0, 1, 2 };
                 goats.RemoveAt(Door.FindIndex(x => x == EPrize.Car));
                 return goats;
             }
@@ -58,7 +58,7 @@ namespace MontyHall
 
         private Doors GetNewRound(int doorCount, bool autoChooseDoor)
         {
-            Doors doors = new Doors();
+            var doors = new Doors();
 
             for (int i = 0; i < doorCount; i++)
             {
@@ -77,7 +77,7 @@ namespace MontyHall
 
         internal static int GetRandomDoor()
         {
-            int door = GetRandInt(0, 3);
+            var door = GetRandInt(0, 3);
             return door;
         }
 
@@ -108,15 +108,15 @@ namespace MontyHall
 
         int GetGoatDoor(int round, int excludeDoor)
         {
-            List<int> goats = Rounds[0].GoatDoors();
+            var goats = Rounds[0].GoatDoors();
 
             if (goats.Contains(excludeDoor))
             {
                 goats.RemoveAt(goats.IndexOf(excludeDoor));
             }
 
-            int randGoatDoor = GetRandInt(0, goats.Count);
-            int count = 0;
+            var randGoatDoor = GetRandInt(0, goats.Count);
+            var count = 0;
 
             foreach (int door in goats)
             {

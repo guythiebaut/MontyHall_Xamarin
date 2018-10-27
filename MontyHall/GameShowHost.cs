@@ -55,16 +55,16 @@ namespace MontyHall
                     MessageHelper.Send("Swapped", string.Empty);
                 }
                 CurrentStage = Stage.SecondDoorChosen;
-                int prizeDoor = ThisRound.GetPrizeDoor();
+                var prizeDoor = ThisRound.GetPrizeDoor();
                 doorsRevealed.Add(prizeDoor + 1);
-                int revealed = 0;
+                var revealed = 0;
 
-                foreach (int door in doorsRevealed)
+                foreach (var door in doorsRevealed)
                 {
                     revealed += door;
                 }
 
-                int toReveal = 6 - revealed - 1;
+                var toReveal = 6 - revealed - 1;
                 MessageHelper.Send("GamePlayed", string.Empty);
 
                 if (prizeDoor == doorNumber)

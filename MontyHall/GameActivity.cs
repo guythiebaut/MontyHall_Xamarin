@@ -68,7 +68,7 @@ namespace MontyHall
         {
             int doorToShow;
             int.TryParse(door, out doorToShow);
-            int doorImage = prize ? Resource.Drawable.gold : Resource.Drawable.goat;
+            var doorImage = prize ? Resource.Drawable.gold : Resource.Drawable.goat;
 
             switch (doorToShow)
             {

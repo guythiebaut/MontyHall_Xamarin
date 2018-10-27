@@ -22,21 +22,14 @@ namespace MontyHall
 
             TextView Instructions = FindViewById<TextView>(Resource.Id.Instructions);
             Instructions.Text = GetFromResources("Resources.files.instructions.txt");
-            //Instructions.SetText(Resource.Id.Instructions);
-            //StringBuilder text = new StringBuilder();
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    text.Append(" " + i.ToString());
-            //}
-            //Instructions.Text = text.ToString();
-
         }
 
         internal string GetFromResources(string resourceName)
         {
-            Assembly assem = Assembly.GetExecutingAssembly();
+            var assem = Assembly.GetExecutingAssembly();
             var name = assem.GetName().Name;
-            var resources = assem.GetManifestResourceNames();
+            //note - the following can be used to get a list of resources
+            ///var resources = assem.GetManifestResourceNames();
             using (Stream stream = assem.GetManifestResourceStream(assem.GetName().Name + '.' + resourceName))
             {
                 using (var reader = new StreamReader(stream))

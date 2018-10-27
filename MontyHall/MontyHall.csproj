@@ -59,8 +59,10 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidForceKeyboardDismissalService.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="GameShowHost.cs" />
+    <Compile Include="IForceKeyboardDismissalService.cs" />
     <Compile Include="InstructionsActivity.cs" />
     <Compile Include="IRound.cs" />
     <Compile Include="LongRunningTaskService.cs" />
@@ -105,6 +107,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.CurrentActivity">
+      <Version>2.1.0.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Annotations">
       <Version>27.0.2.1</Version>
     </PackageReference>
