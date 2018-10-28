@@ -23,7 +23,6 @@ namespace MontyHall
         RadioButton Random;
         bool SimulationRunning = false;
         int maxSims = 10000000;
-        int lastSimulationRuns;
 
         enum SettingsToSave
         {
@@ -100,8 +99,6 @@ namespace MontyHall
                 value = 1;
                 SimulationsToRun.Text = value.ToString();
             }
-
-            lastSimulationRuns = (int)value;
         }
 
         private void SaveSettings(SettingsToSave toSave)
@@ -140,8 +137,9 @@ namespace MontyHall
         {
             if (persist.Contains("SimulationRuns"))
             {
-                int.TryParse((string)persist.GetPreference("SimulationRuns"), out lastSimulationRuns);
-                SimulationsToRun.Text = lastSimulationRuns.ToString();
+                int value;
+                int.TryParse((string)persist.GetPreference("SimulationRuns"), out value);
+                SimulationsToRun.Text = value.ToString();
             }
 
             if (persist.Contains("Strategy"))
