@@ -11,6 +11,7 @@ namespace MontyHall
     [Activity]
     public class SimulationActivity : AppCompatActivity
     {
+        bool Loading;
         Persist persist = new Persist();
         Android.Widget.Button StartSimButton;
         TextView SimulationRoundsRun;
@@ -24,12 +25,21 @@ namespace MontyHall
         int maxSims = 10000000;
         int lastSimulationRuns;
 
+        enum SettingsToSave
+        {
+            Runs,
+            Radio,
+            All
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Loading = true;
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_simulation);
             WireUpControls();
             ApplySavedSettings();
+            Loading = false;
         }
 
         private void WireUpControls()
@@ -47,38 +57,23 @@ namespace MontyHall
             MessageHelper.Subscribe(this, "RoundsWon", SimulationsWon);
             MessageHelper.Subscribe(this, "Simulation", SimulationUpdate);
 
-            SimulationsToRun.AfterTextChanged += (sender, e) =>
+            SimulationsToRun.TextChanged += (sender, e) =>
              {
-                 int value;
-                 int.TryParse(SimulationsToRun.Text, out value);
-
-                 if (value > maxSims)
-                 {
-                     value = lastSimulationRuns;
-                     SimulationsToRun.Text = value.ToString();
-                 }
-
-                 if (value <= 0)
-                 {
-                     value = 1;
-                     SimulationsToRun.Text = value.ToString();
-                 }
-
-                 lastSimulationRuns = value;
-                 persist.AddPreference("SimulationRuns", lastSimulationRuns.ToString());
+                 if (Loading) return;
+                 SaveSettings(SettingsToSave.Runs);
              };
 
             radioGroupStrategy.CheckedChange += (sender, e) =>
             {
-                persist.AddPreference("Strategy", string.Empty);
-                persist.AddPreference("Strategy_Swap", Swap.Checked.ToString());
-                persist.AddPreference("Strategy_Hold", Hold.Checked.ToString());
-                persist.AddPreference("Strategy_Random", Random.Checked.ToString());
+                if (Loading) return;
+                SaveSettings(SettingsToSave.Radio);
             };
 
             StartSimButton.Click += (sender, e) =>
             {
                 if (SimulationRunning) return;
+                VerifyAndFixRuns();
+                SaveSettings(SettingsToSave.All);
                 DependencyService.Get<IForceKeyboardDismissalService>().DismissKeyboard();
                 var intent = new Intent(this, typeof(LongRunningTaskService));
                 intent.PutExtra("Rounds", SimulationsToRun.Text);
@@ -87,6 +82,58 @@ namespace MontyHall
                 intent.PutExtra("Random", Random.Checked);
                 StartService(intent);
             };
+        }
+
+        private void VerifyAndFixRuns()
+        {
+            long value;
+            long.TryParse(SimulationsToRun.Text, out value);
+
+            if (value > maxSims)
+            {
+                value = maxSims;
+                SimulationsToRun.Text = value.ToString();
+            }
+
+            if (value <= 0)
+            {
+                value = 1;
+                SimulationsToRun.Text = value.ToString();
+            }
+
+            lastSimulationRuns = (int)value;
+        }
+
+        private void SaveSettings(SettingsToSave toSave)
+        {
+            switch (toSave)
+            {
+                case SettingsToSave.Runs:
+                    SaveRunSettings();
+                    break;
+                case SettingsToSave.Radio:
+                    SaveRadioSettings();
+                    break;
+                case SettingsToSave.All:
+                    SaveRunSettings();
+                    SaveRadioSettings();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SaveRunSettings()
+        {
+            persist.AddPreference("SimulationRuns", SimulationsToRun.Text);
+        }
+
+        private void SaveRadioSettings()
+        {
+            persist.AddPreference("Strategy", string.Empty);
+            persist.AddPreference("Strategy_Swap", Swap.Checked.ToString());
+            persist.AddPreference("Strategy_Hold", Hold.Checked.ToString());
+            persist.AddPreference("Strategy_Random", Random.Checked.ToString());
         }
 
         private void ApplySavedSettings()
